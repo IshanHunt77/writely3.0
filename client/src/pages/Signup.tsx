@@ -7,11 +7,11 @@ const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const url = "http://localhost:3000";
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/signup", { username, email, password });
+      await axios.post(`${url}/signup`, { username, email, password });
       navigate("/signin");
     } catch (error) {
       console.error("Signup failed", error);

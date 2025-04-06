@@ -15,7 +15,7 @@ export const PostBlog = () => {
   const imageData = useRecoilValue(imageatom);
   const username = useRecoilValue(usernameatom);
   const nav = useNavigate();
-
+  const url = "http://localhost:3000";
   const generateTag = async (): Promise<string> => {
     const genAI = new GoogleGenerativeAI("AIzaSyBKXpAxfxI-_880RbuBXD4cmB3eTdoh3LQ");
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
@@ -32,15 +32,15 @@ export const PostBlog = () => {
         const formData = new FormData();
         formData.append("image", imageData.file);
         const imgRes = await axios.post<{ imageLink: string }>(
-          "http://localhost:3000/blog/upload",
+          `${url}/blog/upload`,
           formData
         );
-        imageUrl = `http://localhost:3000${imgRes.data.imageLink}`;
+        imageUrl = `${url}${imgRes.data.imageLink}`;
       }
       const generatedTag = await generateTag();
       setTag(generatedTag);
       const response = await axios.post(
-        "http://localhost:3000/blog/createBlogs",
+        `${url}/blog/createBlogs`,
         {
           title,
           blog,

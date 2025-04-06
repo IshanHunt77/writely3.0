@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRecoilValue } from "recoil";
 import { usernameatom } from "../atoms/usernameatom";
-import { Card, CardContent, CardMedia, IconButton } from "@mui/material";
+import { Card, IconButton } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ShareIcon from "@mui/icons-material/Share";
@@ -43,12 +43,12 @@ export const BlogCard: React.FC<BlogProps> = ({
   const words = content.split(" ");
   const excerpt =
     words.length > 30 ? words.slice(0, 30).join(" ") + "..." : content;
-
+    const url = "http://localhost:3000";
   useEffect(() => {
   
     const fetchUserInfo = async () => {
       try {
-        const res = await axios.get<Response>(`http://localhost:3000/profile/${author}`, {
+        const res = await axios.get<Response>(`${url}/profile/${author}`, {
           withCredentials: true,
         });
          setAuthor(res.data.userinfo.username);
@@ -63,7 +63,7 @@ export const BlogCard: React.FC<BlogProps> = ({
   const handleUpvote = async () => {
     try {
       if (!blike) {
-        await axios.post(`http://localhost:3000/blog/b/${blogId}`, { upvote: true }, { withCredentials: true });
+        await axios.post(`${url}/blog/b/${blogId}`, { upvote: true }, { withCredentials: true });
         setLike((prev) => prev + 1);
         setBlike(true);
       }
@@ -75,7 +75,7 @@ export const BlogCard: React.FC<BlogProps> = ({
   const handleDownvote = async () => {
     try {
       if (!blike) {
-        await axios.post(`http://localhost:3000/blog/b/${blogId}`, { downvote: true }, { withCredentials: true });
+        await axios.post(`${url}/blog/b/${blogId}`, { downvote: true }, { withCredentials: true });
         setLike((prev) => prev - 1);
         setBlike(true);
       }

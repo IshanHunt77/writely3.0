@@ -11,35 +11,34 @@ import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import { Card } from "@mui/material";
 
 interface CommentType {
-    _id: string;
-    blogId: string;
-    username: string;
-    comment: string;
-    createdAt: string;
-  }
-  
+  _id: string;
+  blogId: string;
+  username: string;
+  comment: string;
+  createdAt: string;
+}
 
 export const BlogPage = () => {
   const nav = useNavigate();
   const { blogId } = useParams();
-  const [like, setLike] = useState(0);
-  console.log(blogId)
   const [search, setSearch] = useState("");
   const [blog, setBlog] = useState<any>(null);
   const [comments, setComments] = useState<any[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
+
+  const url = "http://localhost:3000";
 
   useEffect(() => {
     if (!blogId) return;
 
     const fetchData = async () => {
       try {
-        const blogRes = await axios.get(`http://localhost:3000/blog/${blogId}`, {
+        const blogRes = await axios.get(`${url}/blog/${blogId}`, {
           withCredentials: true,
         });
         setBlog(blogRes.data);
 
-        const commentsRes = await axios.get<CommentType[]>(`http://localhost:3000/blog/comments/${blogId}`, {
+        const commentsRes = await axios.get<CommentType[]>(`${url}/blog/comments/${blogId}`, {
           withCredentials: true,
         });
         setComments(commentsRes.data);
@@ -52,7 +51,7 @@ export const BlogPage = () => {
   }, [blogId]);
 
   useEffect(() => {
-    const newSocket = io("http://localhost:3000");
+    const newSocket = io(url); // WebSocket connection
     setSocket(newSocket);
 
     newSocket.on("connect", () => {
@@ -71,7 +70,7 @@ export const BlogPage = () => {
   const handleSearch = async () => {
     try {
       const searchRes = await axios.post(
-        "http://localhost:3000/blog/search",
+        `${url}/blog/search`,
         { search },
         { withCredentials: true }
       );
@@ -105,30 +104,26 @@ export const BlogPage = () => {
             >
               Search
             </button>
-           
           </div>
           <Navbar />
         </div>
 
-        
         <div className="bg-white-100 shadow-lg rounded-lg p-8 mb-8">
-  {blog ? (
-    <div className="grid grid-cols-2 gap-4">
-      <div>
-        <Blog blog={blog} />
-      </div>
-      <div>
-        <h2 className="text-2xl font-bold mb-4">Recommended</h2>
-        <RelatedCard />
-      </div>
-    </div>
-  ) : (
-    <div className="text-center text-gray-500">Loading blog...</div>
-  )}
-</div>
+          {blog ? (
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Blog blog={blog} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold mb-4">Recommended</h2>
+                <RelatedCard />
+              </div>
+            </div>
+          ) : (
+            <div className="text-center text-gray-500">Loading blog...</div>
+          )}
+        </div>
 
-
-       
         <div className="bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-4">Comments</h2>
           <Comment socket={socket} blogId={blogId} />
@@ -138,21 +133,17 @@ export const BlogPage = () => {
               comments.map((comment, index) => (
                 <div key={index} className="border-b border-gray-200 py-2">
                   <Card key={index} className="p-4 shadow-md rounded-lg">
-                  <div className="flex flex-col">
-                  <p className="font-bold text-gray-800">{comment.author || "ishan77"}</p>
-
-                    <p className="text-gray-800">{comment.comment}</p>
-                    <div className="flex items-center gap-2 mt-2">
-                      
+                    <div className="flex flex-col">
+                      <p className="font-bold text-gray-800">
+                        {comment.author || "ishan77"}
+                      </p>
+                      <p className="text-gray-800">{comment.comment}</p>
+                      <div className="flex items-center gap-2 mt-2">
                         <ThumbUpIcon sx={{ color: "#5d4037" }} />
-                      
-                      
                         <ThumbDownIcon sx={{ color: "#5d4037" }} />
-                      
+                      </div>
                     </div>
-                  </div>
-                </Card>
-                  
+                  </Card>
                 </div>
               ))
             ) : (

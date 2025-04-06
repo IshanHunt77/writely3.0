@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import { useRecoilState } from "recoil";
 import { imageatom } from "../atoms/imageatom";

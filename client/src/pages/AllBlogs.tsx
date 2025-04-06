@@ -21,11 +21,11 @@ export const AllBlogs = () => {
   const [search, setSearch] = useState("");
   const [dp, setDP] = useRecoilState(dpatom);
   const nav = useNavigate();
-
+  const url = "http://localhost:3000"
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const blogResponse = await axios.get<Blog[]>("http://localhost:3000/blog/", {
+        const blogResponse = await axios.get<Blog[]>(`${url}/blog/`, {
           withCredentials: true,
         });
         setBlogs(blogResponse.data);

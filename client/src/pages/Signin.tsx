@@ -10,12 +10,12 @@ const SignInCard: React.FC = () => {
   const navigate = useNavigate();
   const nav = useNavigate();
   const [name, setName] = useRecoilState(usernameatom);
-
+  const url = "http://localhost:3000";
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/signin",
+        `${url}/signin`,
         { username, password },
         { withCredentials: true }
       );
