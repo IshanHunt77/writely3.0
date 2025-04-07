@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express, { Application, Response, Request } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -11,6 +13,8 @@ import { AddComments } from "./controllers/AddComments";
 import { Secret } from "./config";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+
+
 
 const PORT = 3000;
 const app: Application = express();
@@ -81,7 +85,7 @@ io.on("connection", (socket) => {
 
 const mongodbConnect = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/BloggersDb");
+    await mongoose.connect(process.env.MONGOOSE_URI || "");
     console.log("Connected to MongoDB");
   } catch (e) {
     console.log("Error:", e);
