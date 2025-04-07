@@ -9,7 +9,7 @@ const SignInCard: React.FC = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const nav = useNavigate();
-  const [name, setName] = useRecoilState(usernameatom);
+  const [, setName] = useRecoilState(usernameatom);
   const url = "https://writely3-0.onrender.com";
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

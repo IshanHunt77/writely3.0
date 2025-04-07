@@ -7,7 +7,6 @@ import { Card } from "./ui/card";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ShareIcon from "@mui/icons-material/Share";
-import { useNavigate } from "react-router-dom";
 
 interface BlogProps {
   blog: {
@@ -35,7 +34,6 @@ export const Blog = ({ blog }: BlogProps) => {
   const [blike, setBlike] = useState<boolean>(false);
   const [authorname, setAuthor] = useState<string>("");
   const [profilePhotolink, setProfilePhoto] = useState<string>("");
-  const navigate = useNavigate();
   const words = blog.blog.split(" ");
   const excerpt = words.length > 10 ? words.slice(0, 10).join(" ") + "..." : blog.blog;
   const url = "https://writely3-0.onrender.com";

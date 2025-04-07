@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 export const PostBlog = () => {
   const [blog, setBlog] = useState("");
   const [title, setTitle] = useState("");
-  const [tag, setTag] = useState("");
+  const [, setTag] = useState("");
   const imageData = useRecoilValue(imageatom);
   const username = useRecoilValue(usernameatom);
   const nav = useNavigate();

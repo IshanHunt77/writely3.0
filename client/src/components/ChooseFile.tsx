@@ -4,7 +4,7 @@ import { imageatom } from "../atoms/imageatom";
 
 export const ChooseFile = () => {
 
-  const [imageData,setImageData] = useRecoilState(imageatom)
+  const [,setImageData] = useRecoilState(imageatom)
 
   return (
     <div>

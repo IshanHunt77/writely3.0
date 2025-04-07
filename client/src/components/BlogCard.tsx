@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useRecoilValue } from "recoil";
-import { usernameatom } from "../atoms/usernameatom";
+
 import { Card, IconButton } from "@mui/material";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
@@ -30,11 +29,9 @@ export const BlogCard: React.FC<BlogProps> = ({
   title,
   author,
   content,
-  profilePhoto,
   imagelink,
   upvote,
 }) => {
-  const user = useRecoilValue(usernameatom);
   const [authorname,setAuthor] = useState<string>("")
   const [profilePhotolink,setProfilePhoto] = useState<string>("")
   const [like, setLike] = useState<number>(upvote);

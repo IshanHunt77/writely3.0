@@ -18,7 +18,7 @@ interface Blog {
 export const Search = () => {
   const location = useLocation();
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [dp, setDP] = useRecoilState(dpatom);
+  const [dp, ] = useRecoilState(dpatom);
 
   useEffect(() => {
     if (location.state && (location.state as any).blogs) {
