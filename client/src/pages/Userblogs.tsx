@@ -21,7 +21,7 @@ export const Userblogs = () => {
   const [search, setSearch] = useState("");
   const [dp, setDP] = useRecoilState(dpatom);
   const nav = useNavigate();
-  const url = "http://localhost:3000";
+  const url = "https://writely3-0.onrender.com";
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -21,7 +21,7 @@ export const AllBlogs = () => {
   const [search, setSearch] = useState("");
   const [dp, setDP] = useRecoilState(dpatom);
   const nav = useNavigate();
-  const url = "http://localhost:3000"
+  const url = "https://writely3-0.onrender.com"
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -31,7 +31,7 @@ export const AllBlogs = () => {
         setBlogs(blogResponse.data);
 
         const profileRes = await axios.get<{ profilePhoto: string }>(
-          "http://localhost:3000/profile/profilephoto",
+          `${url}/profile/profilephoto`,
           { withCredentials: true }
         );
         setDP({ file: null, imageUrl: profileRes.data.profilePhoto });
@@ -48,7 +48,7 @@ export const AllBlogs = () => {
 searchWithSymbols = encodeURIComponent(searchWithSymbols);
 
 const searchRes = await axios.get<Blog[]>(
-  `http://localhost:3000/blog/search?search=${searchWithSymbols}`,
+  `${url}/blog/search?search=${searchWithSymbols}`,
   { withCredentials: true }
 );
 

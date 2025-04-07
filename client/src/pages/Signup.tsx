@@ -7,7 +7,7 @@ const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const url = "http://localhost:3000";
+  const url = "https://writely3-0.onrender.com";
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {

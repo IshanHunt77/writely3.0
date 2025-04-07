@@ -26,7 +26,7 @@ export const BlogPage = () => {
   const [comments, setComments] = useState<any[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
 
-  const url = "http://localhost:3000";
+  const url = "https://writely3-0.onrender.com";
 
   useEffect(() => {
     if (!blogId) return;

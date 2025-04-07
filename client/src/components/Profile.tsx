@@ -17,7 +17,7 @@ export const Profile = () => {
   const [username, setUsername] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const defaultImage = "/EmptyImage.png";
-  const url = "http://localhost:3000";
+  const url = "https://writely3-0.onrender.com";
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
