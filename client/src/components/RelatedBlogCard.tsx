@@ -24,7 +24,7 @@ export const RelatedCard = () => {
   const username =
     typeof user === "object" && user !== null ? user.username || "" : user;
   const navigate = useNavigate();
-  const url = "https://writely3-0.onrender.com";
+  const url = "https://writely3-0-1-backend0.onrender.com";
   useEffect(() => {
     const fetchBlogs = async () => {
       try {

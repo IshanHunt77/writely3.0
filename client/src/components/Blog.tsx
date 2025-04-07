@@ -36,7 +36,7 @@ export const Blog = ({ blog }: BlogProps) => {
   const [profilePhotolink, setProfilePhoto] = useState<string>("");
   const words = blog.blog.split(" ");
   const excerpt = words.length > 10 ? words.slice(0, 10).join(" ") + "..." : blog.blog;
-  const url = "https://writely3-0.onrender.com";
+  const url = "https://writely3-0-1-backend0.onrender.com";
   useEffect(() => {
     if (blog.author) {
       const fetchUserInfo = async () => {

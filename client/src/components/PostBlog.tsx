@@ -15,7 +15,7 @@ export const PostBlog = () => {
   const imageData = useRecoilValue(imageatom);
   const username = useRecoilValue(usernameatom);
   const nav = useNavigate();
-  const url = "https://writely3-0.onrender.com";
+  const url = "https://writely3-0-1-backend0.onrender.com";
   const generateTag = async (): Promise<string> => {
     const genAI = new GoogleGenerativeAI("AIzaSyBKXpAxfxI-_880RbuBXD4cmB3eTdoh3LQ");
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
