@@ -25,7 +25,7 @@ const Signin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             res.cookie("authtoken", token, {
                 httpOnly: true,
                 secure: true,
-                sameSite: "strict"
+                sameSite: "none"
             });
             res.status(200).json({ msg: "Signin Successful", token });
             return;

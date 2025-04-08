@@ -17,7 +17,7 @@ export const Signin = async (req: Request, res: Response):Promise<void> => {
             res.cookie("authtoken",token,{
                 httpOnly:true,
                 secure:true,
-                sameSite:"strict"
+                sameSite:"none"
             })
              res.status(200).json({ msg: "Signin Successful" ,token});
              return;
