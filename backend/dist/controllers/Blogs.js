@@ -13,7 +13,7 @@ exports.Blogs = void 0;
 const Schema_1 = require("../Schema");
 const Blogs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const allBlogs = yield Schema_1.Blog.find({});
+        const allBlogs = yield Schema_1.Blog.find();
         if (!allBlogs) {
             res.status(500).json({ msg: "No Blogs found" });
             return;

@@ -20,6 +20,7 @@ export const authentication = (req: AuthRequest, res: Response, next: NextFuncti
         const decoded = jwt.verify(token, Secret) as { id: string, username: string };
         req.userId = decoded.id;
         req.username = decoded.username;
+        console.log(req.userId,req.username)
         next();
     } catch (err) {
         res.status(403).json({ msg: "Invalid Token" });

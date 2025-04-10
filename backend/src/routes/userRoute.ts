@@ -4,12 +4,16 @@ import { UserDetails, UserInfo } from "../controllers/UserInfo";
 import { uploadProfile } from "../uploadprofile";
 import { Profile } from "../controllers/Profile";
 import { getProfilePhoto } from "../controllers/ProfilePhoto";
+import cloudinary from "../utils/cloudinary";
 
 const router = express.Router();
 
 router.get('/user',authentication,UserInfo)
+router.get("/profilephoto",authentication,getProfilePhoto)
+
 router.get('/:author',UserDetails)
 router.post('/updateprofile',authentication,Profile)
+
 
 router.post("/upload", uploadProfile.single("images"), (req: Request, res: Response):void => {
     if (!req.file) {
@@ -18,11 +22,27 @@ router.post("/upload", uploadProfile.single("images"), (req: Request, res: Respo
       }
     
 
-  const imageLink = `/uploadProfile/${req.file.filename}`;
-  res.json({ imageLink });
+  const filepath = `/uploadProfile/${req.file.filename}`;
+  cloudinary.uploader.upload(filepath, function (err, result){
+      if(err) {
+        console.log(err);
+        return res.status(500).json({
+          success: false,
+          message: "Error"
+        })
+      }
+  
+      res.status(200).json({
+        success: true,
+        message:"Uploaded!",
+        imageLink: result?.url,
+        
+  
+      })
+    })
+  
 });
 
-router.get("/profilephoto", authentication,getProfilePhoto);
 
 
 export default router

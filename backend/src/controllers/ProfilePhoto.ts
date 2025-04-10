@@ -8,6 +8,7 @@ interface CustomRequest extends Request {
 
 export const getProfilePhoto = async (req: CustomRequest, res: Response): Promise<void> => {
   try {
+    console.log(req.userId)
     if (!req.userId) {
       res.status(401).json({ error: "Unauthorized" });
       return;

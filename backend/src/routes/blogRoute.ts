@@ -10,6 +10,7 @@ import { upload } from "../upload";
 import { UserBlogs } from "../controllers/UserBlogs";
 import { searchBlogs } from "../controllers/Search";
 import { getProfilePhoto } from "../controllers/ProfilePhoto";
+import cloudinary from "../utils/cloudinary";
 
 const router = express.Router();
 
@@ -22,14 +23,29 @@ router.get("/:blogId", authentication, blog);
 router.post("/b/:blogId", authentication, updateVoteBlog);
 
 router.post("/upload", upload.single("image"), (req: Request, res: Response):void => {
-    if (!req.file) {
-        res.status(400).json({ error: "No file uploaded" });
-        return;
-      }
-    
+  if (!req.file) {
+    res.status(400).json({ error: "No file uploaded" });
+    return;
+  }
+  const filepath = req.file?.path || `/uploads/${req.file?.filename}`;
+  cloudinary.uploader.upload(filepath, function (err, result){
+    if(err) {
+      console.log(err);
+      return res.status(500).json({
+        success: false,
+        message: "Error"
+      })
+    }
 
-  const imageLink = `/uploads/${req.file.filename}`;
-  res.json({ imageLink });
+    res.status(200).json({
+      success: true,
+      message:"Uploaded!",
+      imageLink: result?.url,
+      
+
+    })
+  })
+
 });
 
 

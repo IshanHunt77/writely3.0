@@ -13,6 +13,7 @@ exports.getProfilePhoto = void 0;
 const Schema_1 = require("../Schema");
 const getProfilePhoto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log(req.userId);
         if (!req.userId) {
             res.status(401).json({ error: "Unauthorized" });
             return;

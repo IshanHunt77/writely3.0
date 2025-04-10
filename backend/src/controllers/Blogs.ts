@@ -3,7 +3,7 @@ import { Blog } from "../Schema";
 
 export const Blogs = async (req: Request, res: Response): Promise<void> => {
     try {
-        const allBlogs = await Blog.find({});
+        const allBlogs = await Blog.find();
         if (!allBlogs) {
             res.status(500).json({ msg: "No Blogs found" });
             return;
