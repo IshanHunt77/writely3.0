@@ -21,7 +21,8 @@ export const Userblogs = () => {
   const [search, setSearch] = useState("");
   const [dp, setDP] = useRecoilState(dpatom);
   const nav = useNavigate();
-  const url = "https://writely3-0-1-backend0.onrender.com";
+  const url = import.meta.env.VITE_URL;
+
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -26,7 +26,8 @@ export const BlogPage = () => {
   const [comments, setComments] = useState<any[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
 
-  const url = "https://writely3-0-1-backend0.onrender.com";
+  const url = import.meta.env.VITE_URL;
+
 
   useEffect(() => {
     if (!blogId) return;

@@ -40,7 +40,8 @@ export const BlogCard: React.FC<BlogProps> = ({
   const words = content.split(" ");
   const excerpt =
     words.length > 30 ? words.slice(0, 30).join(" ") + "..." : content;
-    const url = "https://writely3-0-1-backend0.onrender.com";
+    const url = import.meta.env.VITE_URL;
+
   useEffect(() => {
   
     const fetchUserInfo = async () => {

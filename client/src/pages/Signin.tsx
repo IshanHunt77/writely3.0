@@ -10,7 +10,8 @@ const SignInCard: React.FC = () => {
   const navigate = useNavigate();
   const nav = useNavigate();
   const [, setName] = useRecoilState(usernameatom);
-  const url = "https://writely3-0-1-backend0.onrender.com";
+  const url = import.meta.env.VITE_URL;
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
