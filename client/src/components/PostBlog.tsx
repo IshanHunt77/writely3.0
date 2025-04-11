@@ -36,7 +36,7 @@ export const PostBlog = () => {
           `${url}/blog/upload`,
           formData
         );
-        imageUrl = `${url}${imgRes.data.imageLink}`;
+        imageUrl = `${imgRes.data.imageLink}`;
       }
       const generatedTag = await generateTag();
       setTag(generatedTag);
@@ -51,6 +51,7 @@ export const PostBlog = () => {
         { withCredentials: true }
       );
       console.log("Blog created:", response.data);
+      
       nav(`/${username}/blogs`);
     } catch (error) {
       console.error("Error creating blog:", error);

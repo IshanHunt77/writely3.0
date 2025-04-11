@@ -45,7 +45,7 @@ export const Profile = () => {
           `${url}/profile/upload`,
           formData
         );
-        imageUrl = `${url}${imgRes.data.imageLink}`;
+        imageUrl = `${imgRes.data.imageLink}`;
       }
       const profileres = await axios.post(
         `${url}/profile/updateprofile`,
