@@ -25,7 +25,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/uploadProfile', express.static('uploadProfile'));
 
 app.use(cors({
-    origin: ["http://localhost:5173", "https://writely3-0-1-web.onrender.com"], 
+    origin: ["http://localhost:5173", "https://writely3-0-1-static.onrender.com"], 
     credentials: true
 }));
 app.use("/signup", signupRoute);

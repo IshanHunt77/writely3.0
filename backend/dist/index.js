@@ -32,7 +32,7 @@ app.use((0, cookie_parser_1.default)());
 app.use('/uploads', express_1.default.static('uploads'));
 app.use('/uploadProfile', express_1.default.static('uploadProfile'));
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:5173", "https://writely3-0-1-web.onrender.com"],
+    origin: ["http://localhost:5173", "https://writely3-0-1-static.onrender.com"],
     credentials: true
 }));
 app.use("/signup", signupRoute_1.default);
