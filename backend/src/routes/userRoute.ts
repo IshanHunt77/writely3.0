@@ -22,7 +22,7 @@ router.post("/upload", uploadProfile.single("images"), (req: Request, res: Respo
       }
     
 
-  const filepath = `/uploadProfile/${req.file.filename}`;
+  const filepath = req.file.path || `/uploadProfile/${req.file.filename}`;
   cloudinary.uploader.upload(filepath, function (err, result){
       if(err) {
         console.log(err);
