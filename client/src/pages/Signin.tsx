@@ -11,6 +11,7 @@ const SignInCard: React.FC = () => {
   const nav = useNavigate();
   const [, setName] = useRecoilState(usernameatom);
   const url = import.meta.env.VITE_URL;
+  console.log(url)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

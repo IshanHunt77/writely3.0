@@ -22,6 +22,7 @@ export const AllBlogs = () => {
   const [dp, setDP] = useRecoilState(dpatom);
   const nav = useNavigate();
   const url = import.meta.env.VITE_URL;
+  
 
   useEffect(() => {
     const fetchData = async () => {
