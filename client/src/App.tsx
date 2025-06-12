@@ -8,6 +8,7 @@ import { Search } from "./pages/Search";
 import { BlogPage } from "./pages/BlogPage";
 import SignupPage from "./pages/Signup";
 import { AllBlogs } from "./pages/AllBlogs";
+import { LandingPage } from "./pages/home";
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/createblog" element={<PostBlog />} />
-          <Route path="/" element={<SignupPage />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/signin" element={<SignInCard />} />
           <Route path="/:username/blogs" element={<Userblogs />} />
           <Route path="/:username/profile" element={<Profile />} />
