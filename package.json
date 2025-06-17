@@ -1,0 +1,7 @@
+{
+  "name": "root-delegate",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "postinstall": "cd client && npm install && npm run build && cd ../backend && npm install"
+  }
+}
