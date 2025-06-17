@@ -27,21 +27,22 @@ const socket_io_1 = require("socket.io");
 const AddComments_1 = require("./controllers/AddComments");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const PORT = process.env.PORT || 3000;
-const _dirName = path_1.default.resolve();
+const _dirName = path_1.default.resolve(__dirname, "../..");
+console.log(_dirName);
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use('/uploads', express_1.default.static('uploads'));
 app.use('/uploadProfile', express_1.default.static('uploadProfile'));
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:5173", "https://writely3-0-1-static.onrender.com"],
+    origin: ["http://localhost:5173", "https://writely3-0-v2.onrender.com"],
     credentials: true
 }));
 app.use("/signup", signupRoute_1.default);
 app.use("/signin", signinRoute_1.default);
 app.use("/blog", blogRoute_1.default);
 app.use("/profile", userRoute_1.default);
-app.use(express_1.default.static(path_1.default.join(_dirName, "/client/dist")));
+app.use(express_1.default.static(path_1.default.join(_dirName, "client", "dist")));
 app.get('*', (req, res) => {
     res.sendFile(path_1.default.join(_dirName, "client", "dist", "index.html"));
 });

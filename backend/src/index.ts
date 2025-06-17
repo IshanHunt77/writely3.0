@@ -20,7 +20,8 @@ import { dirname } from "path";
 
 
 const PORT = process.env.PORT || 3000;
-const _dirName = path.resolve(__dirname, "..");
+const _dirName = path.resolve(__dirname, "../..");
+console.log(_dirName)
 const app: Application = express();
 
 app.use(express.json());
