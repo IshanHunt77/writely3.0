@@ -14,11 +14,13 @@ import { AddComments } from "./controllers/AddComments";
 import { Secret } from "./config";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
+import { dirname } from "path";
+
 
 
 
 const PORT = process.env.PORT || 3000;
-const _dirName = path.resolve()
+const _dirName = path.resolve(__dirname, "..");
 const app: Application = express();
 
 app.use(express.json());
@@ -27,14 +29,14 @@ app.use('/uploads', express.static('uploads'));
 app.use('/uploadProfile', express.static('uploadProfile'));
 
 app.use(cors({
-    origin: ["http://localhost:5173", "https://writely3-0-1-static.onrender.com"], 
+    origin: ["http://localhost:5173", "https://writely3-0-v2.onrender.com"], 
     credentials: true
 }));
 app.use("/signup", signupRoute);
 app.use("/signin", signinRoute);
 app.use("/blog", blogRoute);
 app.use("/profile", userRoute);
-app.use(express.static(path.join(_dirName,"/client/dist")))
+app.use(express.static(path.join(_dirName,"client","dist")))
 app.get('*',(req:Request,res:Response)=>{
   res.sendFile(path.join(_dirName,"client","dist","index.html"))
 })
