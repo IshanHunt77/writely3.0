@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
+import path from "path"
 import express, { Application, Response, Request } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -17,7 +18,7 @@ import cookieParser from "cookie-parser";
 
 
 const PORT = process.env.PORT || 3000;
-
+const _dirName = path.resolve()
 const app: Application = express();
 
 app.use(express.json());
@@ -33,6 +34,10 @@ app.use("/signup", signupRoute);
 app.use("/signin", signinRoute);
 app.use("/blog", blogRoute);
 app.use("/profile", userRoute);
+app.use(express.static(path.join(_dirName,"/client/dist")))
+app.get('*',(req:Request,res:Response)=>{
+  res.sendFile(path.join(_dirName,"client","dist","index.html"))
+})
 
 const server = createServer(app);
 const io = new Server(server, {

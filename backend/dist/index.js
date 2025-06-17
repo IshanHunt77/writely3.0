@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+const path_1 = __importDefault(require("path"));
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
@@ -26,6 +27,7 @@ const socket_io_1 = require("socket.io");
 const AddComments_1 = require("./controllers/AddComments");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const PORT = process.env.PORT || 3000;
+const _dirName = path_1.default.resolve();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
@@ -39,6 +41,10 @@ app.use("/signup", signupRoute_1.default);
 app.use("/signin", signinRoute_1.default);
 app.use("/blog", blogRoute_1.default);
 app.use("/profile", userRoute_1.default);
+app.use(express_1.default.static(path_1.default.join(_dirName, "/client/dist")));
+app.get('*', (req, res) => {
+    res.sendFile(path_1.default.join(_dirName, "client", "dist", "index.html"));
+});
 const server = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(server, {
     cors: {

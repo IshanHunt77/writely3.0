@@ -141,7 +141,7 @@ export const LandingPage = () => {
     },
   ];
 
-  const [blogs, setBlogs] = useState<Blog[]>(DUMMY_BLOGS);
+  const [, setBlogs] = useState<Blog[]>(DUMMY_BLOGS);
   const [search, setSearch] = useState("");
   const nav = useNavigate();
 
