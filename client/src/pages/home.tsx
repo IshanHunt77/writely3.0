@@ -32,7 +32,7 @@ const Navbar = () => {
             Explore Blogs
           </button>
           <button
-            onClick={() => nav("/login")}
+            onClick={() => nav("/signin")}
             className="text-lg font-medium text-gray-700 hover:text-amber-700 transition-colors duration-300"
           >
             Log In
