@@ -26,7 +26,6 @@ export const BlogPage = () => {
   const [comments, setComments] = useState<any[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
 
-  const url = import.meta.env.VITE_URL;
 
 
   useEffect(() => {
@@ -34,12 +33,12 @@ export const BlogPage = () => {
 
     const fetchData = async () => {
       try {
-        const blogRes = await axios.get(`${url}/blog/${blogId}`, {
+        const blogRes = await axios.get(`/blog/${blogId}`, {
           withCredentials: true,
         });
         setBlog(blogRes.data);
 
-        const commentsRes = await axios.get<CommentType[]>(`${url}/blog/comments/${blogId}`, {
+        const commentsRes = await axios.get<CommentType[]>(`/blog/comments/${blogId}`, {
           withCredentials: true,
         });
         setComments(commentsRes.data);
@@ -52,7 +51,7 @@ export const BlogPage = () => {
   }, [blogId]);
 
   useEffect(() => {
-    const newSocket = io(url); // WebSocket connection
+    const newSocket = io("https://writely3-0.onrender.com"); // WebSocket connection
     setSocket(newSocket);
 
     newSocket.on("connect", () => {
@@ -71,7 +70,7 @@ export const BlogPage = () => {
   const handleSearch = async () => {
     try {
       const searchRes = await axios.post(
-        `${url}/blog/search`,
+        `/blog/search`,
         { search },
         { withCredentials: true }
       );

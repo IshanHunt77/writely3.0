@@ -29,10 +29,7 @@ app.use(cookieParser());
 app.use('/uploads', express.static('uploads'));
 app.use('/uploadProfile', express.static('uploadProfile'));
 
-app.use(cors({
-    origin: ["http://localhost:5173", "https://writely3-0-v2.onrender.com"], 
-    credentials: true
-}));
+
 app.use("/signup", signupRoute);
 app.use("/signin", signinRoute);
 app.use("/blog", blogRoute);

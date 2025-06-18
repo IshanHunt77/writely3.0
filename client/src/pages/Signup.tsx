@@ -7,12 +7,11 @@ const SignupPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const url = import.meta.env.VITE_URL;
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post(`${url}/signup`, { username, email, password });
+      await axios.post(`/signup`, { username, email, password });
       navigate("/signin");
     } catch (error) {
       console.error("Signup failed", error);

@@ -36,14 +36,13 @@ export const Blog = ({ blog }: BlogProps) => {
   const [profilePhotolink, setProfilePhoto] = useState<string>("");
   const words = blog.blog.split(" ");
   const excerpt = words.length > 10 ? words.slice(0, 10).join(" ") + "..." : blog.blog;
-  const url = import.meta.env.VITE_URL;
 
   useEffect(() => {
     if (blog.author) {
       const fetchUserInfo = async () => {
         try {
           const res = await axios.get<Response>(
-            `${url}/profile/${blog.author}`,
+            `/profile/${blog.author}`,
             { withCredentials: true }
           );
           setAuthor(res.data.userinfo.username);
@@ -60,7 +59,7 @@ export const Blog = ({ blog }: BlogProps) => {
     try {
       if (!blike) {
         await axios.post(
-          `${url}/blog/b/${blog.blogId}`,
+          `/blog/b/${blog.blogId}`,
           { upvote: true },
           { withCredentials: true }
         );
@@ -76,7 +75,7 @@ export const Blog = ({ blog }: BlogProps) => {
     try {
       if (!blike) {
         await axios.post(
-          `${url}/blog/b/${blog.blogId}`,
+          `/blog/b/${blog.blogId}`,
           { downvote: true },
           { withCredentials: true }
         );

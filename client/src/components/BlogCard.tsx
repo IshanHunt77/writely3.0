@@ -40,13 +40,12 @@ export const BlogCard: React.FC<BlogProps> = ({
   const words = content.split(" ");
   const excerpt =
     words.length > 30 ? words.slice(0, 30).join(" ") + "..." : content;
-    const url = import.meta.env.VITE_URL;
 
   useEffect(() => {
   
     const fetchUserInfo = async () => {
       try {
-        const res = await axios.get<Response>(`${url}/profile/${author}`, {
+        const res = await axios.get<Response>(`/profile/${author}`, {
           withCredentials: true,
         });
          setAuthor(res.data.userinfo.username);
@@ -61,7 +60,7 @@ export const BlogCard: React.FC<BlogProps> = ({
   const handleUpvote = async () => {
     try {
       if (!blike) {
-        await axios.post(`${url}/blog/b/${blogId}`, { upvote: true }, { withCredentials: true });
+        await axios.post(`/blog/b/${blogId}`, { upvote: true }, { withCredentials: true });
         setLike((prev) => prev + 1);
         setBlike(true);
       }
@@ -73,7 +72,7 @@ export const BlogCard: React.FC<BlogProps> = ({
   const handleDownvote = async () => {
     try {
       if (!blike) {
-        await axios.post(`${url}/blog/b/${blogId}`, { downvote: true }, { withCredentials: true });
+        await axios.post(`/blog/b/${blogId}`, { downvote: true }, { withCredentials: true });
         setLike((prev) => prev - 1);
         setBlike(true);
       }

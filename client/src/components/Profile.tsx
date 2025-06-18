@@ -17,13 +17,12 @@ export const Profile = () => {
   const [username, setUsername] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const defaultImage = "/EmptyImage.png";
-  const url = import.meta.env.VITE_URL;
 
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
         const userInfo = await axios.get<ProfileResponse>(
-          `${url}/profile/user`,
+          `/profile/user`,
           { withCredentials: true }
         );
         setProfileImagelink(userInfo.data.userinfo?.profilePhoto || null);
@@ -42,13 +41,13 @@ export const Profile = () => {
         const formData = new FormData();
         formData.append("images", dp.file);
         const imgRes = await axios.post<{ imageLink: string }>(
-          `${url}/profile/upload`,
+          `/profile/upload`,
           formData
         );
         imageUrl = `${imgRes.data.imageLink}`;
       }
       const profileres = await axios.post(
-        `${url}/profile/updateprofile`,
+        `/profile/updateprofile`,
         { profilePhoto: imageUrl },
         { withCredentials: true }
       );

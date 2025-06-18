@@ -21,18 +21,17 @@ export const Userblogs = () => {
   const [search, setSearch] = useState("");
   const [dp, setDP] = useRecoilState(dpatom);
   const nav = useNavigate();
-  const url = import.meta.env.VITE_URL;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const blogResponse = await axios.get<Blog[]>(`${url}/blog/userblogs`, {
+        const blogResponse = await axios.get<Blog[]>(`/blog/userblogs`, {
           withCredentials: true,
         });
         setBlogs(blogResponse.data);
 
         const profileRes = await axios.get<{ profilePhoto: string }>(
-          `${url}/profile/profilephoto`,
+          `/profile/profilephoto`,
           { withCredentials: true }
         );
         setDP({ file: null, imageUrl: profileRes.data.profilePhoto });
@@ -46,7 +45,7 @@ export const Userblogs = () => {
   const getSearch = async () => {
     try {
       const searchRes = await axios.post<Blog[]>(
-        `${url}/blog/search`,
+        `/blog/search`,
         { search },
         { withCredentials: true }
       );
